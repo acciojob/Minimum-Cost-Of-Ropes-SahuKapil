@@ -1,22 +1,36 @@
-function calculateMinCost(ropeLengths) {
+function calculateMinCost() {
   //your code here
-  let cost = 0;
-  let sortedLengths = ropeLengths.sort((a, b) => a - b); // sort the rope lengths in ascending order
-  
-  while (sortedLengths.length > 1) {
-    // take the two smallest ropes
-    let smallestRope = sortedLengths.shift();
-    let secondSmallestRope = sortedLengths.shift();
-    
-    // add their lengths and insert the new rope back into the array
-    let newRopeLength = smallestRope + secondSmallestRope;
-    cost += newRopeLength;
-    sortedLengths.push(newRopeLength);
-    sortedLengths.sort((a, b) => a - b); // re-sort the array
-  }
-  
-  return cost;
   
   
   
 }  
+// script.js
+function calculateMinCost() {
+  const inputElement = document.getElementById("rope-lengths");
+  const resultElement = document.getElementById("result");
+  
+  const ropeLengths = inputElement.value.split(",").map(str => parseInt(str.trim()));
+  const minCost = minimumCostOfRopes(ropeLengths);
+  
+  resultElement.innerText = "Minimum cost: " + minCost;
+}
+
+function minimumCostOfRopes(ropes) {
+  // Use a priority queue (min heap) to efficiently find the minimum
+  const PriorityQueue = require('./priorityQueue'); // Assuming you have the PriorityQueue implementation
+
+  const pq = new PriorityQueue();
+  
+  for (const rope of ropes) {
+    pq.enqueue(rope);
+  }
+
+  let totalCost = 0;
+  while (pq.size() > 1) {
+    const sum = pq.dequeue() + pq.dequeue();
+    totalCost += sum;
+    pq.enqueue(sum);
+  }
+
+  return totalCost;
+}
