@@ -25,5 +25,6 @@ function minimumCostOfRopes(ropes) {
     pq.enqueue(sum);
   }
 
-  return totalCost;
+  // return totalCost;
+	console.log(totalCost);
 }
