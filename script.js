@@ -1,10 +1,3 @@
-// function calculateMinCost() {
-//   //your code here
-  
-  
-  
-// }  
-// script.js
 function calculateMinCost() {
   const inputElement = document.getElementById("rope-lengths");
   const resultElement = document.getElementById("result");
